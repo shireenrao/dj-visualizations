@@ -1,0 +1,8 @@
+django
+pytest
+pillow
+django-crispy-forms
+matplotlib
+seaborn
+pandas
+xhtml2pdf
