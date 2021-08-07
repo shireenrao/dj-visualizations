@@ -1,9 +1,12 @@
 {% extends "base.html" %}
 
 {% block title %}
-home
+Sale List
 {% endblock title %}
 
 {% block content %}
-{{hello}}
+Sale List<br />
+{% for obj in object_list %}
+<a href="{{ obj.get_absolute_url }}">{{obj.transaction_id}}</a>
+{% endfor %}
 {% endblock content %}
