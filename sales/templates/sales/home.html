@@ -12,7 +12,17 @@ home
 </form>
 <br />
 {% if sales_df %}
+Sales df
 {{ sales_df|safe }}
+<br />
+Positions df
+{{ positions_df|safe }}
+<br />
+Merged df
+{{ merged_df|safe }}
+<br />
+Grouped by df
+{{ df|safe }}
 {% else %}
 <h3>No Data</h3>
 {% endif %}
