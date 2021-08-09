@@ -6,3 +6,6 @@ matplotlib
 seaborn
 pandas
 xhtml2pdf
+gunicorn
+dj-database-url
+psycopg2
