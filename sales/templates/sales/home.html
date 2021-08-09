@@ -30,6 +30,13 @@ home
         </div>
     </div>
 </div>
+
+{% if no_data %}
+<div class="alert alert-warning" role="alert">
+    {{no_data}}
+</div>
+{% endif %}
+
 <form action="" method="POST">
     {% csrf_token %}
     {{ search_form|crispy }}
@@ -51,7 +58,6 @@ Grouped by df
 <br />
 Chart
 <img src="data:image/png;base64, {{chart|safe}}" id="img">
-{% else %} <h3>No Data</h3>
 {% endif %}
 <br />
 <button class="btn btn-primary not-visible" id="report-btn" data-bs-toggle="modal" data-bs-target="#reportModal">Add
