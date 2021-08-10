@@ -9,3 +9,5 @@ xhtml2pdf
 gunicorn
 dj-database-url
 psycopg2
+django-storages
+boto3
