@@ -44,7 +44,7 @@ def csv_upload_view(request):
         if created:
             obj.csv_file = csv_file
             obj.save()
-            with open(obj.csv_file.path, "r") as f:
+            with open(csv_file.path, "r") as f:
                 reader = csv.reader(f)
                 next(reader)
                 for row in reader:
