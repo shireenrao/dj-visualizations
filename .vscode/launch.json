@@ -13,10 +13,7 @@
                 "runserver"
             ],
             "django": true,
-            "env": {
-                "DEVELOPMENT_MODE": "True",
-                "DEBUG": "True",
-            }
+            "env": {}
         }
     ]
 }

@@ -24,7 +24,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = "django-insecure-w73+0mu%pc$f^20)ed+0du2(k%rc6-iwq96)i1jm8@t76j-=wg"
 SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", get_random_secret_key())
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -156,6 +155,7 @@ STATICFILES_STORAGE = "reports_proj.storage_backends.StaticStorage"
 PUBLIC_MEDIA_LOCATION = "media"
 MEDIA_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/{PUBLIC_MEDIA_LOCATION}/"
 DEFAULT_FILE_STORAGE = "reports_proj.storage_backends.PublicMediaStorage"
+
 
 STATICFILES_DIRS = [BASE_DIR / "static"]
 
