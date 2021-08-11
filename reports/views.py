@@ -1,6 +1,8 @@
 import csv
 
 from django.conf import settings
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import get_object_or_404, render
 from django.template.loader import get_template
@@ -18,20 +20,21 @@ from .models import Report
 from .utils import get_report_image
 
 
-class ReportListView(ListView):
+class ReportListView(LoginRequiredMixin, ListView):
     model = Report
     template_name = "reports/main.html"
 
 
-class ReportDetailView(DetailView):
+class ReportDetailView(LoginRequiredMixin, DetailView):
     model = Report
     template_name = "reports/detail.html"
 
 
-class UploadTemplateView(TemplateView):
+class UploadTemplateView(LoginRequiredMixin, TemplateView):
     template_name = "reports/from_file.html"
 
 
+@login_required
 def csv_upload_view(request):
     print("file is being sent")
     if request.method == "POST":
@@ -69,13 +72,14 @@ def csv_upload_view(request):
                         )
                         sale_obj.positions.add(position_obj)
                         sale_obj.save()
-                    return JsonResponse({"ex": False})
+                return JsonResponse({"ex": False})
         else:
             return JsonResponse({"ex": True})
 
     return HttpResponse()
 
 
+@login_required
 def create_report_view(request):
     form = ReportForm(request.POST or None)
     if request.is_ajax():
@@ -97,6 +101,7 @@ def create_report_view(request):
     return JsonResponse({})
 
 
+@login_required
 def render_pdf_view(request, pk):
     template_path = "reports/pdf.html"
 

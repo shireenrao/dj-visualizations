@@ -18,10 +18,15 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
 
+from .views import log_out_view, login_view
+
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", include("sales.urls", namespace="sales")),
+    path("profile/", include("profiles.urls", namespace="profiles")),
     path("reports/", include("reports.urls", namespace="reports")),
+    path("login/", login_view, name="login"),
+    path("logout/", log_out_view, name="logout"),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
