@@ -49,14 +49,14 @@ def get_chart(chart_type, data, results_by, **kwargs):
     key = get_key(results_by)
     d = data.groupby(key, as_index=False)["total_price"].agg("sum")
     if chart_type == "#1":
-        print("bar chart")
+        # print("bar chart")
         # plt.bar(data["transaction_id"], data["price"])
         sns.barplot(x=key, y="total_price", data=d)
     elif chart_type == "#2":
-        print("pie chart")
+        # print("pie chart")
         plt.pie(data=d, x="total_price", labels=d[key].values)
     elif chart_type == "#3":
-        print("line chart")
+        # print("line chart")
         plt.plot(d[key], d["total_price"], color="green", marker="x")
     else:
         print("Oops!")
