@@ -30,7 +30,14 @@ SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", get_random_secret_key())
 DEBUG = os.getenv("DEBUG", "False") == "True"
 DEVELOPMENT_MODE = os.getenv("DEVELOPMENT_MODE", "False") == "True"
 
-ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "127.0.0.1,localhost").split(",")
+ALLOWED_HOSTS = []
+
+RENDER_EXTERNAL_HOSTNAME = os.environ.get("RENDER_EXTERNAL_HOSTNAME")
+if RENDER_EXTERNAL_HOSTNAME:
+    ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
+else:
+    tmp_hosts = os.getenv("DJANGO_ALLOWED_HOSTS", "127.0.0.1,localhost").split(",")
+    ALLOWED_HOSTS.extend(tmp_hosts)
 
 
 # Application definition
